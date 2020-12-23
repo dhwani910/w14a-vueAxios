@@ -1,25 +1,25 @@
 <template>
 <div>
-    <button class="button is-info" @click="displayJoke"> Loud Joke</button>
-    <p>{{joke}}</p>
+    <button class="button is-info" @click="loadJoke()"> Loud Joke</button>
+   
 </div>
     
 </template>
 
 
 <script>
-import axios from 'axios';
+
 export default {
     name: 'LoudJoke',
     computed: {
         joke(){
-            return this.$store.state.joke.toUpperCase;
+            return this.$store.getters.getJoke.toUpperCase();
         }
 
     },
     methods: {
-        displayJoke(){
-            this.$store.commit('displayJoke', this.joke);
+        loadJoke(){
+            this.$store.commit('SET_NEW_JOKE', this.joke);
         }
        
     },

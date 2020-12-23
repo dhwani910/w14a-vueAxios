@@ -1,7 +1,7 @@
 <template>
 <div>
-    <button class="button is-warning" @click="loadJoke"> Load Joke</button>
-    <p>{{joke}}</p>
+    <button class="button is-warning" @click="loadJoke()"> Load Joke</button>
+    <p>{{ this.joke }}</p>
     <normal-joke></normal-joke>
     <loud-joke></loud-joke>
     <snake-joke></snake-joke>
@@ -22,12 +22,17 @@ export default {
            LoudJoke,
             SnakeJoke,
         },
+    computed: {
+        joke(){
+            return this.$store.getters.getJoke;
+        }
+    },
     
   
 
     methods: {
         loadJoke(){
-            this.$store.commit('displayJoke', '');
+            
             this.$store.dispatch('loadJoke');
         }
     }

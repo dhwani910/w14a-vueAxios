@@ -1,6 +1,6 @@
 <template>
 <div>
-   <button class="button is-info" @click="displayJoke"> Normal Joke</button>
+   <button class="button is-info" @click="loadJoke()"> Normal Joke</button>
      
 </div>
     
@@ -8,19 +8,19 @@
 
 
 <script>
-import axios from 'axios';
+
 export default {
     name: 'NormalJoke',
     computed: {
         joke(){
-            return this.$store.state.joke;
+            return this.$store.getters.getJoke;
         }
     },
      
 
     methods: {
-        displayJoke(){
-            this.$store.commit('displayJoke', this.joke);
+        loadJoke(){
+            this.$store.commit('SET_NEW_JOKE', this.joke);
         }
        
     },
